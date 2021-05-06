@@ -26,7 +26,7 @@ namespace Assets.Scripts.Classes
 
                 case ItemType.FlashLight:
                     if (FlashLight == null)
-                        FlashLight = 1f;
+                        FlashLight = Constants.flashlightCharge;
                     break;
 
                 case ItemType.Key:

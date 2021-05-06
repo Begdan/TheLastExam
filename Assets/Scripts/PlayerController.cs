@@ -17,8 +17,10 @@ public class PlayerController : MonoBehaviour
     public Camera playerCamera;
     public Text pickUpItemText;
     public Text battariesCountText;
-    public Text KeysCountText;
-    public Image FlashlightImage;
+    public Text keysCountText;
+    public Image flashlightImage;
+    public GameObject flashlight;
+    public Slider flashlightSlider;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
     public float hitDistance = 3f;
@@ -45,6 +47,9 @@ public class PlayerController : MonoBehaviour
         CharacterMovement();
         ItemPickUp();
 
+
+        OnFlashlight();
+        RechargeFlashlight();
     }
 
     void CharacterMovement()
@@ -111,13 +116,43 @@ public class PlayerController : MonoBehaviour
     void UpdateUI()
     {
         battariesCountText.text = playerInventory.Batteries.ToString();
-        KeysCountText.text = string.Join(" ", playerInventory.Keys);
+        keysCountText.text = string.Join(" ", playerInventory.Keys);
+        flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
         if (playerInventory.FlashLight.HasValue)
-            FlashlightImage.gameObject.SetActive(true);
+        {
+            flashlightSlider.gameObject.SetActive(true);
+            flashlightImage.gameObject.SetActive(true);
+        }
     }
 
-    void UpdateFlashLightChargeState()
-    {
 
+    void RechargeFlashlight()
+    {
+        if (Input.GetKeyDown(KeyCode.R) && playerInventory.Batteries > 0)
+        {
+            playerInventory.FlashLight = Constants.flashlightCharge;
+            playerInventory.Batteries -= 1;
+            UpdateUI();
+        }
+    }
+
+    void OnFlashlight()
+    {
+        if (!playerInventory.FlashLight.HasValue)
+            return;
+
+        if (Input.GetKeyDown(KeyCode.F))
+            flashlight.gameObject.SetActive(!flashlight.gameObject.activeSelf);
+
+        if (flashlight.gameObject.activeSelf)
+        {
+            if (playerInventory.FlashLight > 0)
+            {
+                flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
+                playerInventory.FlashLight -= Time.deltaTime;
+            }
+            else
+                flashlight.gameObject.SetActive(false);
+        }
     }
 }

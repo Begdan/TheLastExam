@@ -8,6 +8,7 @@ namespace Assets.Scripts.Classes
         public PlayerInventory()
         {
             Keys = new List<int>();
+            FlashLight = Constants.flashlightCharge;
         }
 
         public int Batteries { get; set; }

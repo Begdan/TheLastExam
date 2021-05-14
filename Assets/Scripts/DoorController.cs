@@ -5,43 +5,31 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     [SerializeField] private bool isLocked;
-    private Animator animator;
-    private Camera mainCamera;
-    [SerializeField] private float openDistance = 5.0f;
-    [SerializeField] private string doorTag = "Door";
+    private static bool _isLocked;
+    private static Animator animator;
 
-    private Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0.5f);
     void Start()
     {
         animator = GetComponentInParent<Animator>();
-        mainCamera = Camera.main;
+        _isLocked = isLocked;
     }
 
-    void Update()
+    public static void ManageDoor()
     {
-        Ray ray = mainCamera.ViewportPointToRay(rayOrigin);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, openDistance))
+        if (Input.GetKeyDown(KeyCode.E) && !_isLocked)
         {
-            /*Debug.DrawRay(ray.origin, ray.direction * openDistance, Color.red);*/
-            if (hit.transform.CompareTag(doorTag))
-            {
-                if (Input.GetKeyDown(KeyCode.E) && !isLocked)
-                {
-                    if (!animator.GetBool("isOpened"))
-                        Open();
-                    else Close();
-                }
-            }
+            if (!animator.GetBool("isOpened"))
+                Open();
+            else Close();
         }
     }
 
-    private void Open()
+    private static void Open()
     {
         animator.SetBool("isOpened", true);
     }
 
-    private void Close()
+    private static void Close()
     {
         animator.SetBool("isOpened", false);
     }

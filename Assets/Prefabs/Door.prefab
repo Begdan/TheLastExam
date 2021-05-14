@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3037866305158575455}
   - component: {fileID: 3037866305158575452}
   - component: {fileID: 3037866305158575453}
-  - component: {fileID: 3037866305158575450}
   - component: {fileID: 3037866305158575393}
   - component: {fileID: 4759739423979552393}
   m_Layer: 0
@@ -301,20 +300,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3037866305158575451}
   m_Mesh: {fileID: 0}
---- !u!64 &3037866305158575450
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3037866305158575451}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 0}
 --- !u!114 &3037866305158575393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,7 +313,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLocked: 0
-  cameraRaycast: {fileID: 0}
   openDistance: 5
   doorTag: Door
 --- !u!65 &4759739423979552393
@@ -339,7 +323,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3037866305158575451}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.1155759, y: 1.1155759, z: 1.115576}
@@ -357,7 +341,7 @@ GameObject:
   - component: {fileID: 3037866305878557440}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Door
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -386,7 +370,7 @@ Animation:
   m_GameObject: {fileID: 3037866305878557503}
   m_Enabled: 1
   serializedVersion: 3
-  m_Animation: {fileID: 0}
+  m_Animation: {fileID: 7400000, guid: 689ed241f77c3664fb3f15c905ed42e5, type: 2}
   m_Animations: []
   m_WrapMode: 0
   m_PlayAutomatically: 0
@@ -402,7 +386,7 @@ Animator:
   m_GameObject: {fileID: 3037866305878557503}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0064c1cdd2fa0a04f8730adb8ec0f74a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

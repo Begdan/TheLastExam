@@ -24,6 +24,8 @@ public class RaycastController : MonoBehaviour
                 DoorController.ManageDoor();
             else if (hit.transform.CompareTag("CallElevatorButton"))
                 ElevatorController.ManageDoors();
+            else if (hit.transform.CompareTag("LightFadeTrigger"))
+                LightFadeController.FadeOut();
         }
     }
 }

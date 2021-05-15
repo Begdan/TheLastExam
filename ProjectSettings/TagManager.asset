@@ -10,6 +10,7 @@ TagManager:
   - Door1
   - Elevator
   - CallElevatorButton
+  - LightFadeTrigger
   layers:
   - Default
   - TransparentFX

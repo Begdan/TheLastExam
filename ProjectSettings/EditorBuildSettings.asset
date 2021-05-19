@@ -6,6 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 6f26e3ff6706dc945863790f523e2c97
+    path: Assets/Scenes/DoorElevator.unity
+    guid: b880a47a5aeed6247ac8ba52e8ca4311
     path: Assets/Scenes/FirstFloorStart.unity
     guid: bd1a2bccffa54a94bbec103d593678f1
   - enabled: 1

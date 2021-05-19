@@ -7,6 +7,7 @@ public class RaycastController : MonoBehaviour
     private Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0.5f);
     private Camera mainCamera;
     [SerializeField] private static float interactionDistance = 3.0f;
+    private string objectTag;
     
     void Start()
     {
@@ -22,10 +23,13 @@ public class RaycastController : MonoBehaviour
         {
             if (hit.transform.CompareTag("Door"))
                 DoorController.ManageDoor();
-            else if (hit.transform.CompareTag("CallElevatorButton"))
+            if (hit.transform.CompareTag("CallElevatorButton"))
                 ElevatorController.ManageDoors();
-            else if (hit.transform.CompareTag("LightFadeTrigger"))
+            if (hit.transform.CompareTag("LightFadeTrigger"))
                 LightFadeController.FadeOut();
+            if (hit.transform.CompareTag("PickUp"))
+                PlayerController.ItemPickUp(hit);
+            else PlayerController._pickUpItemText.gameObject.SetActive(false);
         }
     }
 }

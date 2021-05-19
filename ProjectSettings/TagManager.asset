@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Door
   - PickUp
+  - Door2
+  - Door1
+  - Elevator
+  - CallElevatorButton
+  - LightFadeTrigger
+  - Hint
   layers:
   - Default
   - TransparentFX

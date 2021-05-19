@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [HideInInspector]
-    public PlayerInventory playerInventory = new PlayerInventory();
+    public static PlayerInventory playerInventory = new PlayerInventory();
 
     public float walkingSpeed = 3f;
     public float runningSpeed = 6f;
@@ -15,12 +15,19 @@ public class PlayerController : MonoBehaviour
     public float jumpReload = 1f;
     public float gravity = 40.0f;
     public Camera playerCamera;
-    public Text pickUpItemText;
-    public Text battariesCountText;
-    public Text keysCountText;
-    public Image flashlightImage;
+    [SerializeField] private Text pickUpItemText;
+    public static Text _pickUpItemText;
+    [SerializeField] private Text battariesCountText;
+    public static Text _battariesCountText;
+    [SerializeField] private Text keysCountText;
+    public static Text _keysCountText;
+    [SerializeField] private Image flashlightImage;
+    public static Image _flashlightImage;
     public GameObject flashlight;
-    public Slider flashlightSlider;
+    [SerializeField] private Text hintText;
+    public static Text _hintText;
+    [SerializeField] private Slider flashLightSlider;
+    public static Slider _flashlightSlider;
     public float lookSpeed = 2.0f;
     public float lookXLimit = 90.0f;
     public float hitDistance = 3f;
@@ -40,12 +47,18 @@ public class PlayerController : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        _hintText = hintText;
+        _pickUpItemText = pickUpItemText;
+        _battariesCountText = battariesCountText;
+        _keysCountText = keysCountText;
+        _flashlightImage = flashlightImage;
+        _flashlightSlider = flashLightSlider;
     }
 
     void Update()
     {
         CharacterMovement();
-        ItemPickUp();
 
 
         OnFlashlight();
@@ -92,37 +105,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void ItemPickUp()
-    {
-        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out var hit))
-        {
-            if (hit.distance < hitDistance && hit.transform.CompareTag("PickUp"))
-            {
-                if (!pickUpItemText.gameObject.activeSelf)
-                    pickUpItemText.gameObject.SetActive(true);
+    public static void ItemPickUp(RaycastHit hit)
+    { 
+        if (!_pickUpItemText.gameObject.activeSelf)
+            _pickUpItemText.gameObject.SetActive(true);
 
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    playerInventory.AddItem(hit.transform.GetComponent<ItemController>());
-                    UpdateUI();
-                    Destroy(hit.transform.gameObject);
-                }
-            }
-            else pickUpItemText.gameObject.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            playerInventory.AddItem(hit.transform.GetComponent<ItemController>());
+            UpdateUI();
+            Destroy(hit.transform.gameObject);
         }
     }
 
-    void UpdateUI()
+    static void UpdateUI()
     {
-        battariesCountText.text = playerInventory.Batteries.ToString();
-        keysCountText.text = string.Join(" ", playerInventory.Keys);
-        flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
+        _battariesCountText.text = playerInventory.Batteries.ToString();
+        _keysCountText.text = string.Join(" ", playerInventory.Keys);
         if (playerInventory.FlashLight.HasValue)
         {
-            flashlightSlider.gameObject.SetActive(true);
-            flashlightImage.gameObject.SetActive(true);
+            _flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
+            _flashlightSlider.gameObject.SetActive(true);
+            _flashlightImage.gameObject.SetActive(true);
         }
+    }
+
+    public static void UpdateHintText(string text)
+    {
+        _hintText.text = text;
     }
 
 
@@ -148,7 +158,7 @@ public class PlayerController : MonoBehaviour
         {
             if (playerInventory.FlashLight > 0)
             {
-                flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
+                _flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
                 playerInventory.FlashLight -= Time.deltaTime;
             }
             else

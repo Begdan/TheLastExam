@@ -59,8 +59,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CharacterMovement();
-
-
         OnFlashlight();
         RechargeFlashlight();
     }

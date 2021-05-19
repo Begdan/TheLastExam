@@ -13,7 +13,7 @@ public class LightFadeController : MonoBehaviour
     
     private void Update()
     {
-        if(isFade && light.intensity > minimalFadeValue)
+        if (isFade && light.intensity > minimalFadeValue)
             light.intensity -= fadeSpeed * Time.deltaTime;
     }
 

@@ -40,6 +40,7 @@ public class RaycastController : MonoBehaviour
         else
         {
             PlayerController._pickUpItemText.gameObject.SetActive(false);
+            PlayerController._hintText.text = "";
         }
     }
 }

@@ -11,6 +11,7 @@ TagManager:
   - Elevator
   - CallElevatorButton
   - LightFadeTrigger
+  - Hint
   layers:
   - Default
   - TransparentFX

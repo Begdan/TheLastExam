@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Image flashlightImage;
     public static Image _flashlightImage;
     public GameObject flashlight;
+    [SerializeField] private Text hintText;
+    public static Text _hintText;
     [SerializeField] private Slider flashLightSlider;
     public static Slider _flashlightSlider;
     public float lookSpeed = 2.0f;
@@ -46,6 +48,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        _hintText = hintText;
         _pickUpItemText = pickUpItemText;
         _battariesCountText = battariesCountText;
         _keysCountText = keysCountText;
@@ -119,12 +122,17 @@ public class PlayerController : MonoBehaviour
     {
         _battariesCountText.text = playerInventory.Batteries.ToString();
         _keysCountText.text = string.Join(" ", playerInventory.Keys);
-        _flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
         if (playerInventory.FlashLight.HasValue)
         {
+            _flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);
             _flashlightSlider.gameObject.SetActive(true);
             _flashlightImage.gameObject.SetActive(true);
         }
+    }
+
+    public static void UpdateHintText(string text)
+    {
+        _hintText.text = text;
     }
 
 

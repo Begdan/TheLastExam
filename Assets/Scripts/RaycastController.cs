@@ -29,6 +29,8 @@ public class RaycastController : MonoBehaviour
                 LightFadeController.FadeOut();
             if (hit.transform.CompareTag("PickUp"))
                 PlayerController.ItemPickUp(hit);
+            if (hit.transform.CompareTag("Hint"))
+                PlayerController.UpdateHintText(hit.transform.name);
             else PlayerController._pickUpItemText.gameObject.SetActive(false);
         }
     }

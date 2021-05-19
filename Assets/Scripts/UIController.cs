@@ -7,12 +7,11 @@ public class UIController : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("FirstFloorStart");
     }
 
     public void ExitGame()
     {
-        Debug.Log("Игра закрылась");
         Application.Quit();
     }
 }

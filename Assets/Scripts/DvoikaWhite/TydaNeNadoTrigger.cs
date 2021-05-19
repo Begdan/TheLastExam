@@ -9,7 +9,7 @@ public class TydaNeNadoTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Text.text = "Экзамен проходит не в тех кабинетах, мне надо вернуться";
+            Text.text = "Р­РєР·Р°РјРµРЅ РїСЂРѕС…РѕРґРёС‚ РЅРµ РІ С‚РµС… РєР°Р±РёРЅРµС‚Р°С…, РјРЅРµ РЅР°РґРѕ РІРµСЂРЅСѓС‚СЊСЃСЏ";
         }
     }
 

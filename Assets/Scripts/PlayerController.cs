@@ -134,8 +134,7 @@ public class PlayerController : MonoBehaviour
     {
         _hintText.text = text;
     }
-
-
+    
     void RechargeFlashlight()
     {
         if (Input.GetKeyDown(KeyCode.R) && playerInventory.Batteries > 0)

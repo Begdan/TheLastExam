@@ -10,7 +10,7 @@ public class DoorController : MonoBehaviour
 
     void Start()
     {
-        animator = GetComponentInParent<Animator>();
+        animator = GetComponent<Animator>();
         _isLocked = isLocked;
     }
 

@@ -146,6 +146,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -173,6 +174,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &8757043147868217478
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,9 +184,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8272150391362452028}
+  - component: {fileID: 5061008483452191030}
+  - component: {fileID: -7140551864433511449}
   m_Layer: 0
   m_Name: flash
-  m_TagString: Untagged
+  m_TagString: PickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -197,8 +201,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8757043147868217478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 28.025, y: 81.715, z: 155.684}
-  m_LocalScale: {x: 5.003014, y: 5.4883065, z: 5.003014}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 2872597959117515642}
   - {fileID: 9043154788877434814}
@@ -206,6 +210,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5061008483452191030
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757043147868217478}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.05, y: 0.05, z: 0.05}
+  m_Center: {x: 0, y: 0.03, z: 0}
+--- !u!114 &-7140551864433511449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8757043147868217478}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d86f499ff01d8ff438c336deacd194df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemType: 1
+  RoomNumberKey: 0
 --- !u!1 &8979069445966461060
 GameObject:
   m_ObjectHideFlags: 0

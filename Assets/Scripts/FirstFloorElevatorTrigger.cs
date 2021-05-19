@@ -36,7 +36,7 @@ public class FirstFloorElevatorTrigger : MonoBehaviour
         yield return new WaitForSeconds(TimeUntilStartFade);
         isStartedFade = true;
         yield return new WaitForSeconds(TimeUntilBlack + 0.5f);
-        SceneManager.LoadScene("Dvoika");
+        SceneManager.LoadScene("FirstFloorEnd");
     }
 
     private void Update()

@@ -37,5 +37,9 @@ public class RaycastController : MonoBehaviour
                 else PlayerController._hintText.text = "";
             }
         }
+        else
+        {
+            PlayerController._pickUpItemText.gameObject.SetActive(false);
+        }
     }
 }

@@ -22,18 +22,20 @@ public class RaycastController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, interactionDistance))
         {
             if (hit.transform.CompareTag("Door"))
-                DoorController.ManageDoor();
+                hit.transform.gameObject.GetComponent<DoorController>().ManageDoor();
             if (hit.transform.CompareTag("CallElevatorButton"))
                 ElevatorController.ManageDoors();
             if (hit.transform.CompareTag("LightFadeTrigger"))
                 LightFadeController.FadeOut();
+            if (hit.transform.CompareTag("Sofa"))
+                hit.transform.GetComponent<SofaController>().StartSleep();
             if (hit.transform.CompareTag("PickUp"))
                 PlayerController.ItemPickUp(hit);
             else PlayerController._pickUpItemText.gameObject.SetActive(false);
             if (PlayerController._hintText != null)
             {
                 if (hit.transform.CompareTag("Hint"))
-                    PlayerController.UpdateHintText(hit.transform.name);
+                    PlayerController.UpdateHintText(hit.transform.GetComponent<Hint>().Text);
                 else PlayerController._hintText.text = "";
             }
         }

@@ -1,12 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
     [SerializeField] private bool isLocked;
-    private static bool _isLocked;
-    private static Animator animator;
+    private bool _isLocked;
+    private Animator animator;
+    public PlayerController player;
+
+    public int doorNumber = 0;
 
     void Start()
     {
@@ -14,7 +15,7 @@ public class DoorController : MonoBehaviour
         _isLocked = isLocked;
     }
 
-    public static void ManageDoor()
+    public void ManageDoor()
     {
         if (Input.GetKeyDown(KeyCode.E) && !_isLocked)
         {
@@ -24,12 +25,22 @@ public class DoorController : MonoBehaviour
         }
     }
 
-    private static void Open()
+    private void Open()
     {
-        animator.SetBool("isOpened", true);
+        if (doorNumber == 0)
+        {
+            animator.SetBool("isOpened", true);
+        }
+        else if (PlayerController.playerInventory.Keys.Contains(doorNumber))
+        {
+            animator.SetBool("isOpened", true);
+            PlayerController.playerInventory.Keys.Remove(doorNumber);
+            doorNumber = 0;
+            PlayerController.UpdateUI();
+        }
     }
 
-    private static void Close()
+    private void Close()
     {
         animator.SetBool("isOpened", false);
     }

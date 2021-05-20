@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    static void UpdateUI()
+    public static void UpdateUI()
     {
         _battariesCountText.text = playerInventory.Batteries.ToString();
         _keysCountText.text = string.Join(" ", playerInventory.Keys);

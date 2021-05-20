@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstFloorEnd.unity
     guid: b6011b55f39263947bd31227d6646d83
+  - enabled: 1
+    path: Assets/Scenes/DvoikaDark.unity
+    guid: 8021b4516e31e874e9eb0e86ab254e4e
   m_configObjects: {}

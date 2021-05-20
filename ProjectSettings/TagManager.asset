@@ -12,6 +12,8 @@ TagManager:
   - CallElevatorButton
   - LightFadeTrigger
   - Hint
+  - Sofa
+  - Girl
   layers:
   - Default
   - TransparentFX

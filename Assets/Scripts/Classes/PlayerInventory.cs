@@ -7,14 +7,14 @@ namespace Assets.Scripts.Classes
     {
         public PlayerInventory()
         {
-            Keys = new List<int>();
+            Keys = new List<Key>();
         }
 
         public int Batteries { get; set; }
 
         public float? FlashLight { get; set; }
 
-        public List<int> Keys { get; set; }
+        public List<Key> Keys { get; set; }
 
         public void AddItem(ItemController item)
         {
@@ -30,7 +30,7 @@ namespace Assets.Scripts.Classes
                     break;
 
                 case ItemType.Key:
-                    Keys.Add(item.RoomNumberKey);
+                    Keys.Add(new Key(item.RoomNumberKey, item.KeyLabel));
                     break;
             }
         }

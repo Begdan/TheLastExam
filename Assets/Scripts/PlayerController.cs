@@ -1,3 +1,4 @@
+using System.Linq;
 using Assets.Scripts.Classes;
 using Assets.Scripts.Enums;
 using UnityEngine;
@@ -54,6 +55,9 @@ public class PlayerController : MonoBehaviour
         _keysCountText = keysCountText;
         _flashlightImage = flashlightImage;
         _flashlightSlider = flashLightSlider;
+
+        walkingSpeed = PlayerSpeedData.PlayerSpeed;
+        runningSpeed = PlayerSpeedData.PlayerRunSpeed;
     }
 
     void Update()
@@ -119,7 +123,7 @@ public class PlayerController : MonoBehaviour
     public static void UpdateUI()
     {
         _battariesCountText.text = playerInventory.Batteries.ToString();
-        _keysCountText.text = string.Join(" ", playerInventory.Keys);
+        _keysCountText.text = string.Join(" ", playerInventory.Keys.Select(x => x.Label).ToList());
         if (playerInventory.FlashLight.HasValue)
         {
             _flashlightSlider.value = (float)(playerInventory.FlashLight / Constants.flashlightCharge);

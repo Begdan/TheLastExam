@@ -1,44 +1,60 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DoorController : MonoBehaviour
 {
     [SerializeField] private bool isLocked;
+    private bool _isLocked;
     private Animator animator;
-    private Camera mainCamera;
-    [SerializeField] private float openDistance = 5.0f;
-    [SerializeField] private string doorTag = "Door";
+    public PlayerController player;
 
-    private Vector3 rayOrigin = new Vector3(0.5f, 0.5f, 0.5f);
+    public int doorNumber = 0;
+
     void Start()
     {
-        animator = GetComponentInParent<Animator>();
-        mainCamera = Camera.main;
+        animator = GetComponent<Animator>();
+        _isLocked = isLocked;
     }
 
-    void Update()
+    public void ManageDoor()
     {
-        Ray ray = mainCamera.ViewportPointToRay(rayOrigin);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, openDistance))
+        if (doorNumber == -1)
         {
-            /*Debug.DrawRay(ray.origin, ray.direction * openDistance, Color.red);*/
-            if (hit.transform.CompareTag(doorTag))
-            {
-                if (Input.GetKeyDown(KeyCode.E) && !isLocked)
-                {
-                    if (!animator.GetBool("isOpened"))
-                        Open();
-                    else Close();
-                }
-            }
+            BetweenScenesData.PlayerInventory = PlayerController.playerInventory;
+            SceneManager.LoadScene("FirstFloorEnd");
+        }
+
+        if (doorNumber == -2)
+        {
+            BetweenScenesData.PlayerInventory = null;
+            SceneManager.LoadScene("MainMenu");
+        }
+        if (Input.GetKeyDown(KeyCode.E) && !_isLocked)
+        {
+            if (!animator.GetBool("isOpened"))
+                Open();
+            else Close();
         }
     }
 
     private void Open()
     {
-        animator.SetBool("isOpened", true);
+        if (doorNumber == 0)
+        {
+            animator.SetBool("isOpened", true);
+        }
+        else
+        {
+            var key = PlayerController.playerInventory.Keys.FirstOrDefault(x => x.RoomNumber == doorNumber);
+            if (key != null)
+            {
+                animator.SetBool("isOpened", true);
+                PlayerController.playerInventory.Keys.Remove(key);
+                doorNumber = 0;
+                PlayerController.UpdateUI();
+            }
+        }
     }
 
     private void Close()

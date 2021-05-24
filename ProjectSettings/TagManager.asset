@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Door
+  - PickUp
+  - Door2
+  - Door1
+  - Elevator
+  - CallElevatorButton
+  - LightFadeTrigger
+  - Hint
+  - Sofa
+  - Girl
   layers:
   - Default
   - TransparentFX

@@ -4,6 +4,6 @@ using UnityEngine;
 
 public static class PlayerSpeedData //TODO поменять
 {
-    public static float PlayerSpeed { get; set; } = 15; 
-    public static float PlayerRunSpeed { get; set; } = 30;
+    public static float PlayerSpeed { get; set; } = 3; 
+    public static float PlayerRunSpeed { get; set; } = 6;
 }

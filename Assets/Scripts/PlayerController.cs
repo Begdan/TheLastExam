@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
             return;
 
         if (Input.GetKeyDown(KeyCode.F))
-            flashlight.gameObject.SetActive(!flashlight.gameObject.activeSelf);
+            ChangeFlashlightState(!flashlight.gameObject.activeSelf);
 
         if (flashlight.gameObject.activeSelf)
         {
@@ -165,5 +165,10 @@ public class PlayerController : MonoBehaviour
             else
                 flashlight.gameObject.SetActive(false);
         }
+    }
+    
+    public void ChangeFlashlightState(bool state)
+    {
+        flashlight.gameObject.SetActive(state);
     }
 }

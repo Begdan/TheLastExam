@@ -5,6 +5,6 @@
         /// <summary>
         /// Время на которое хватает заряда батареи фонарика
         /// </summary>
-        public static float flashlightCharge = 15f;
+        public static float flashlightCharge = 30f;
     }
 }

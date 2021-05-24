@@ -20,15 +20,16 @@ public class GirlTriggerController : MonoBehaviour
 
     private IEnumerator Dismember(PlayerController controller)
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         girl.transform.rotation = Quaternion.Euler(0, 0, 0);
         StartCoroutine(Scream(controller));
     }
 
     private IEnumerator Scream(PlayerController controller)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         hint.SetActive(true);
+        controller.ChangeFlashlightState(false);
         Destroy(girl);
         controller.canMove = true;
         Destroy(this);
